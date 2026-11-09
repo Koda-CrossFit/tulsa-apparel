@@ -54,4 +54,8 @@ Updating that deployment keeps the web app URL that `index.html` calls. `clasp c
 
 ## Testing
 
-`node tools/test-ui.js` clicks through the store at desktop and phone width against a fake backend (no real orders) and saves screenshots to `tools/out/`. Admin requests to the live script (list, delete test orders, reset the counter, preview the summary email) need the admin key in `Desktop\Claude\Credentials - SENSITIVE Do Not Share\koda-tulsa-apparel-admin-key.txt`. Only its SHA-256 is in the code.
+- `node tools/test-ui.js` clicks through the store at desktop and phone width against a fake backend (no real orders) and saves screenshots to `tools/out/`.
+- `node tools/live-check.js` places clearly fake "Test Order" orders on the live store and backend, checks the sheet, previews the summary email, then deletes the test orders and resets the counter (only when no real orders exist). Don't run it once real orders are coming in unless you mean to.
+- `node tools/admin.js <action>` sends one admin request to the live script: `adminList`, `adminDelete`, `adminResetCounter`, `adminSummaryPreview`, `adminShare`, `adminEditors`, `adminSetup`.
+
+Admin requests need the admin key in `Desktop\Claude\Credentials - SENSITIVE Do Not Share\koda-tulsa-apparel-admin-key.txt`. Only its SHA-256 is in the code.
