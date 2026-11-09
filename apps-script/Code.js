@@ -630,6 +630,15 @@ function admin_(req) {
       props.setProperty('LAST_ORDER_NO', String(FIRST_ORDER_NO - 1));
       props.deleteProperty('LAST_SUMMARY_AT');
       return { ok: true };
+    case 'adminShare': {
+      // Gives someone edit access to the sheet, which includes this script (Extensions > Apps Script).
+      const email = clean_(req.email, 120).toLowerCase();
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return { ok: false, code: 'bad_request' };
+      ss.addEditor(email);
+      return { ok: true, editors: ss.getEditors().map((u) => u.getEmail()) };
+    }
+    case 'adminEditors':
+      return { ok: true, editors: ss.getEditors().map((u) => u.getEmail()), viewers: ss.getViewers().map((u) => u.getEmail()) };
     case 'adminSummaryPreview': {
       const s = settings_();
       const now = req.now ? new Date(req.now) : new Date();
