@@ -32,7 +32,8 @@ const CC_SIZES = ['S', 'M', 'L', 'XL', '2XL', '3XL'];
 const CATALOG = {
   'grizz-tee': { item: 'Koda Grizz Tee', brand: 'Bella+Canvas', price: 25, colors: ['Vintage White'], sizes: SIZES },
   'bronco-tee': { item: 'Koda Bronco Camo Tee', brand: 'Independent', price: 30, colors: ['Deadwood Camo'], sizes: SIZES },
-  'bronco-crew': { item: 'Koda Bronco Camo Crewneck', brand: 'Independent', price: 50, colors: ['Deadwood Camo'], sizes: SIZES },
+  // Was the $50 crewneck until 11/10/2026; the sku stays the same so saved carts keep working.
+  'bronco-crew': { item: 'Koda Bronco Camo Long Sleeve', brand: 'Independent', price: 40, colors: ['Deadwood Camo'], sizes: SIZES },
   'bronco-hoodie': { item: 'Koda Bronco Camo Hoodie', brand: 'Independent', price: 50, colors: ['Deadwood Camo'], sizes: SIZES },
   'uk-tee': { item: 'Koda United Kingdom Tee', brand: 'Bella+Canvas', price: 25, colors: ['Black'], sizes: SIZES },
   'uk-hoodie': { item: 'Koda United Kingdom Hoodie', brand: 'Independent', price: 50, colors: ['Black'], sizes: SIZES },
@@ -636,6 +637,32 @@ function admin_(req) {
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return { ok: false, code: 'bad_request' };
       ss.addEditor(email);
       return { ok: true, editors: ss.getEditors().map((u) => u.getEmail()) };
+    }
+    case 'adminCatalog':
+      return { ok: true, catalog: CATALOG };
+    case 'adminRenameItem': {
+      // Renames an item on Totals (column A) and on Order Lines (column D), e.g. after a catalog name change.
+      const from = clean_(req.from, 80);
+      const to = clean_(req.to, 80);
+      if (!from || !to) return { ok: false, code: 'bad_request' };
+      const renamed = {};
+      [[TABS.totals, 1], [TABS.lines, 4]].forEach((t) => {
+        const sh = ss.getSheetByName(t[0]);
+        let n = 0;
+        if (sh && sh.getLastRow() >= 1) {
+          const rng = sh.getRange(1, t[1], sh.getLastRow(), 1);
+          const vals = rng.getValues();
+          vals.forEach((r) => {
+            if (String(r[0]).trim() === from) {
+              r[0] = to;
+              n++;
+            }
+          });
+          if (n) rng.setValues(vals);
+        }
+        renamed[t[0]] = n;
+      });
+      return { ok: true, renamed: renamed };
     }
     case 'adminEditors':
       return { ok: true, editors: ss.getEditors().map((u) => u.getEmail()), viewers: ss.getViewers().map((u) => u.getEmail()) };

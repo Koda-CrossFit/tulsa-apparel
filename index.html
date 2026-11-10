@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Koda Tulsa Apparel Preorder</title>
-<meta name="description" content="Preorder new Koda CrossFit Tulsa apparel: Koda Grizz, Koda Bronco, Koda United Kingdom and Koda University. Tees $25, camo tees $30, hoodies and crewnecks $50. Orders close Sunday, December 6.">
+<meta name="description" content="Preorder new Koda CrossFit Tulsa apparel: Koda Grizz, Koda Bronco, Koda United Kingdom and Koda University. Tees $25, camo tee $30, camo long sleeve $40, hoodies $50. Orders close Sunday, December 6.">
 <meta name="theme-color" content="#02afad">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">
@@ -12,9 +12,9 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Koda CrossFit Tulsa">
 <meta property="og:title" content="Koda Tulsa Apparel Preorder">
-<meta property="og:description" content="Four new designs. Tees $25, camo tees $30, hoodies and crewnecks $50. Order by Sunday, December 6.">
+<meta property="og:description" content="Four new designs. Tees $25, camo tee $30, camo long sleeve $40, hoodies $50. Order by Sunday, December 6.">
 <meta property="og:url" content="https://koda-crossfit.github.io/tulsa-apparel/">
-<meta property="og:image" content="https://koda-crossfit.github.io/tulsa-apparel/assets/og-image.jpg">
+<meta property="og:image" content="https://koda-crossfit.github.io/tulsa-apparel/assets/og-image.jpg?v=2">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
@@ -324,8 +324,9 @@
       <p class="lede" id="heroLede">Four new designs for the Koda Tulsa crew. Order by <strong>Sunday, December 6 at 11:59 PM</strong>. Everything is ordered once the preorder closes, and you pick yours up at the gym.</p>
       <ul class="prices" aria-label="Prices">
         <li><b>$25</b> Tees</li>
-        <li><b>$30</b> Camo tees</li>
-        <li><b>$50</b> Hoodies &amp; crewnecks</li>
+        <li><b>$30</b> Camo tee</li>
+        <li><b>$40</b> Camo long sleeve</li>
+        <li><b>$50</b> Hoodies</li>
       </ul>
       <div class="hero-cta">
         <a class="btn btn-light" href="#shop">Shop the collection</a>
@@ -488,7 +489,8 @@
       styles: [
         { sku: 'bronco-tee', label: 'Camo Tee', item: 'Koda Bronco Camo Tee', brand: 'Independent', price: 30, sizes: SIZES,
           colors: [{ name: 'Deadwood Camo', hex: '#9b9a8e', views: [{ label: 'Back', src: 'bronco-tee-back.webp' }, { label: 'Front', src: 'bronco-tee-front.webp' }] }] },
-        { sku: 'bronco-crew', label: 'Crewneck', item: 'Koda Bronco Camo Crewneck', brand: 'Independent', price: 50, sizes: SIZES,
+        // The sku stays 'bronco-crew' (it started as a crewneck) so orders saved in someone's browser still work.
+        { sku: 'bronco-crew', label: 'Long Sleeve', item: 'Koda Bronco Camo Long Sleeve', brand: 'Independent', price: 40, sizes: SIZES,
           colors: [{ name: 'Deadwood Camo', hex: '#9b9a8e', views: [{ label: 'Back', src: 'bronco-crewneck-back.webp' }, { label: 'Front', src: 'bronco-crewneck-front.webp' }] }] },
         { sku: 'bronco-hoodie', label: 'Hoodie', item: 'Koda Bronco Camo Hoodie', brand: 'Independent', price: 50, sizes: SIZES,
           colors: [{ name: 'Deadwood Camo', hex: '#9b9a8e', views: [{ label: 'Back', src: 'bronco-hoodie-back.webp' }, { label: 'Front', src: 'bronco-hoodie-front.webp' }] }] }
@@ -714,8 +716,8 @@
     }
     return null;
   }
-  // Prices always come from this page's catalog, never from what was saved in the browser.
-  cart.forEach(function (i) { i.price = skuInfo(i.sku).price; });
+  // Prices and names always come from this page's catalog, never from what was saved in the browser.
+  cart.forEach(function (i) { var s = skuInfo(i.sku); i.price = s.price; i.item = s.item; });
 
   function cartCount() { return cart.reduce(function (t, i) { return t + i.qty; }, 0); }
   function cartTotal() { return cart.reduce(function (t, i) { return t + i.qty * i.price; }, 0); }

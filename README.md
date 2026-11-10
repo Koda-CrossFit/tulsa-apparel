@@ -2,13 +2,13 @@
 
 The preorder store for Koda CrossFit Tulsa: https://koda-crossfit.github.io/tulsa-apparel/
 
-Four designs, seven garments. Tees are $25, the camo tee is $30, and every hoodie and crewneck is $50. People pay by having it billed to their PushPress account or by Venmo to @Senorespy. The store takes orders until **Sunday, December 6, 2026 at 11:59 PM Central**, and everything is picked up at the gym.
+Four designs, seven garments. Tees are $25, the camo tee is $30, the camo long sleeve is $40, and the hoodies are $50. People pay by having it billed to their PushPress account or by Venmo to @Senorespy. The store takes orders until **Sunday, December 6, 2026 at 11:59 PM Central**, and everything is picked up at the gym.
 
 | Design | Garment | Brand | Color | Sizes | Price |
 |---|---|---|---|---|---|
 | Koda Grizz | Tee | Bella+Canvas | Vintage White | XS–3XL | $25 |
 | Koda Bronco | Camo Tee | Independent | Deadwood Camo | XS–3XL | $30 |
-| Koda Bronco | Camo Crewneck | Independent | Deadwood Camo | XS–3XL | $50 |
+| Koda Bronco | Camo Long Sleeve | Independent | Deadwood Camo | XS–3XL | $40 |
 | Koda Bronco | Camo Hoodie | Independent | Deadwood Camo | XS–3XL | $50 |
 | Koda United Kingdom | Tee | Bella+Canvas | Black | XS–3XL | $25 |
 | Koda United Kingdom | Hoodie | Independent | Black | XS–3XL | $50 |

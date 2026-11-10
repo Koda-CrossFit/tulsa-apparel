@@ -108,8 +108,9 @@ const server = http.createServer((req, res) => {
 
     await click(page, card('bronco') + ' [data-act="style"][data-val="0"]');
     check((await text(page, card('bronco') + ' [data-act="add"]')).includes('$30'), 'Bronco camo tee shows $30');
+    check((await text(page, card('bronco') + ' [data-act="style"][data-val="1"]')).replace(/\s+/g, ' ') === 'Long Sleeve $40', 'Bronco style button reads "Long Sleeve $40"');
     await click(page, card('bronco') + ' [data-act="style"][data-val="1"]');
-    check((await text(page, card('bronco') + ' [data-act="add"]')).includes('$50'), 'Bronco crewneck shows $50');
+    check((await text(page, card('bronco') + ' [data-act="add"]')).includes('$40'), 'Bronco long sleeve shows $40');
 
     check((await page.$$(card('university') + ' [data-act="size"][data-val="XS"]')).length === 0, 'University tee has no XS');
     await click(page, card('university') + ' [data-act="color"][data-val="1"]');

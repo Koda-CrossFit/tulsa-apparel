@@ -36,7 +36,7 @@ const og = `<!doctype html><html><head><meta charset="utf-8">
     <div class="brand"><svg viewBox="0 0 1961 1078">${MARK}</svg>KODA CROSSFIT TULSA</div>
     <div class="tag">Apparel preorder</div>
     <h1>Koda Tulsa<br>Apparel</h1>
-    <div class="prices"><span><b>$25</b> Tees</span><span><b>$30</b> Camo tees</span><span><b>$50</b> Hoodies &amp; crews</span></div>
+    <div class="prices"><span><b>$25</b> Tees</span><span><b>$30</b> Camo tee</span><span><b>$40</b> Camo long sleeve</span><span><b>$50</b> Hoodies</span></div>
     <div class="when">Order by Sunday, December 6</div>
   </div>
   <div class="right">
